@@ -1,10 +1,10 @@
 <template>
   <div>
-    新闻列表...
+    工具模块开发中...
   </div>
 </template>
 
-<script setup lang="ts" name="news">
+<script setup lang="ts" name="tools">
 
 </script>
 
