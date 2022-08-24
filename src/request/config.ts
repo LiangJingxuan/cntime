@@ -1,7 +1,7 @@
 import axios from "axios";
 // 创建axios实例
 const service = axios.create({
-  baseURL: "https://www.fastmock.site/mock/bf1fcb3c2e2945669c2c8d0ecb8009b8/api",
+  baseURL: "https://www.mxnzp.com/api",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json;charset-utf-8"
@@ -9,14 +9,20 @@ const service = axios.create({
 })
 // 请求拦截
 service.interceptors.request.use((config) => {
-  config.headers = config.headers || {}
-  config.headers.token = localStorage.getItem("token") || ""
+  const app_id = "ylnmzqrottjqmhja"
+  const app_secret = "QUdMdmliN21Xd2xoZzRRUWYxOWVRUT09"
+  const type = config.method === "get" ? "params" : "data"
+  config[type] = {
+    app_id,
+    app_secret,
+    ...config[type]
+  }
   return config
 })
 // 响应拦截
 service.interceptors.response.use((res) => {
   const code: number = res.data.code
-  if (code !== 200) return Promise.reject(res.data)
+  if (!code) return Promise.reject(res.data)
   return res.data
 }, (err) => {
   console.log(err);

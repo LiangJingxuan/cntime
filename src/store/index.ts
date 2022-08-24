@@ -1,12 +1,17 @@
 import { defineStore } from 'pinia'
-import { storeNames } from "./names"
+import { APP, ACTION } from "./enum"
 
-export const useTestStore = defineStore(storeNames.testId, {
+export const useAppStore = defineStore(APP.id, {
   state() {
     return {
-      num: 1
+      navShow: false
     }
   },
   getters: {},
-  actions: {},
+  actions: {
+    // 导航菜单状态控制
+    [ACTION.CHANGE_ANV_SHOW](payload: boolean) {
+      this.navShow = payload
+    }
+  },
 })

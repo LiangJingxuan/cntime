@@ -1,3 +1,4 @@
-import $http from "./config";
-
-export {}
+import navs from "./modules/navs"
+export {
+  navs
+}
