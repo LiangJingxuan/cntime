@@ -56,9 +56,6 @@ const onClickRight = () => app[ACTION.CHANGE_ANV_SHOW](false)
 const data = reactive(new navsAllData())
 const { cutList, optList } = toRefs(data)
 
-console.log(data);
-
-
 onMounted(() => {
   // 渲染导航列表
   getStoreNavs(data)

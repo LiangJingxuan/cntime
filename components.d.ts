@@ -7,9 +7,12 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BackTop: typeof import('./src/components/back/backTop.vue')['default']
     Header: typeof import('./src/components/header/Header.vue')['default']
     Navs: typeof import('./src/components/navs/Navs.vue')['default']
     NavsAll: typeof import('./src/components/navs/NavsAll.vue')['default']
+    NewsItem: typeof import('./src/components/list/NewsItem.vue')['default']
+    NewsList: typeof import('./src/components/list/NewsList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     VanBadge: typeof import('vant/es')['Badge']
@@ -19,9 +22,11 @@ declare module '@vue/runtime-core' {
     VanGrid: typeof import('vant/es')['Grid']
     VanGridItem: typeof import('vant/es')['GridItem']
     VanIcon: typeof import('vant/es')['Icon']
+    VanList: typeof import('vant/es')['List']
     VanNavBar: typeof import('vant/es')['NavBar']
     VanPopup: typeof import('vant/es')['Popup']
     VanRow: typeof import('vant/es')['Row']
+    VanSticky: typeof import('vant/es')['Sticky']
     VanTab: typeof import('vant/es')['Tab']
     VanTabs: typeof import('vant/es')['Tabs']
     VanTag: typeof import('vant/es')['Tag']

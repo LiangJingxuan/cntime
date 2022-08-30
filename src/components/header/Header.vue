@@ -1,14 +1,16 @@
 <template>
   <div class="header">
-    <van-nav-bar @click-right="changeNavShow">
-      <template #left>
-        <img src="../../assets/img/logo.png">
-        <span>资讯网</span>
-      </template>
-      <template #right>
-        <van-icon name="wap-nav" />
-      </template>
-    </van-nav-bar>
+    <van-sticky>
+      <van-nav-bar @click-right="changeNavShow">
+        <template #left>
+          <img src="../../assets/img/logo.png">
+          <span>资讯网</span>
+        </template>
+        <template #right>
+          <van-icon name="wap-nav" />
+        </template>
+      </van-nav-bar>
+    </van-sticky>
     <van-tabs v-model:active="active" color="rgba(103,245,255,1)" background="none" line-width="20"
       title-active-color="#fff" title-inactive-color="rgba(255,255,255, .5)" @change="change">
       <van-tab :title="r.meta.title" v-for="r in routes" :key="r.path" />
@@ -46,7 +48,8 @@ const changeNavShow = () => app[ACTION.CHANGE_ANV_SHOW](true)
 }
 
 .van-nav-bar {
-  background: none;
+  // background: none;
+  background-color: #528bfe; 
 
   .van-icon {
     font-size: 25px;
@@ -66,6 +69,7 @@ const changeNavShow = () => app[ACTION.CHANGE_ANV_SHOW](true)
     font-size: 18px;
     height: 15px;
     line-height: 15px;
+    font-weight: bold;
   }
 }
 </style>
