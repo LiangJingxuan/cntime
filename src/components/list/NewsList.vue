@@ -8,7 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, toRefs, ref, computed, inject, onMounted } from "vue"
+import { reactive, toRefs, ref } from "vue"
+import { useRoute } from "vue-router"
 import { newsData, getNewsList } from "../../types/news"
 
 const data = reactive(new newsData())
@@ -19,9 +20,10 @@ const { list } = toRefs(data)
 const loading = ref(false)
 const finished = ref(false)
 const error = ref(false)
+const route = useRoute()
 let page = 1
 const onLoad = () => {
-  getNewsList(data, { typeId: 518, page: page++ }, () => {
+  getNewsList(data, { typeId: route.query.id as any || 518, page: page++ }, () => {
     // 加载状态结束
     loading.value = false
     // 数据全部加载完成

@@ -3,5 +3,5 @@ export enum APP {
 }
 
 export enum ACTION {
-  CHANGE_ANV_SHOW = "CHANGE_ANV_SHOW"
+  CHANGE_NAV_SHOW = "CHANGE_NAV_SHOW"
 }

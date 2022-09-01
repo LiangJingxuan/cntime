@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { provide, nextTick, ref } from "vue"
-import Header from "./components/header/Header.vue"
-import NavsAll from "./components/navs/NavsAll.vue"
 
+// 更新页面
 const isRouterActive = ref(true)
 provide("reload", () => {
   isRouterActive.value = false

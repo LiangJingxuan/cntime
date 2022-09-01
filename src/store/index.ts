@@ -10,7 +10,7 @@ export const useAppStore = defineStore(APP.id, {
   getters: {},
   actions: {
     // 导航菜单状态控制
-    [ACTION.CHANGE_ANV_SHOW](payload: boolean) {
+    [ACTION.CHANGE_NAV_SHOW](payload: boolean) {
       this.navShow = payload
     }
   },

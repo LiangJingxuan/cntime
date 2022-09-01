@@ -17,7 +17,15 @@
         </van-col>
       </van-row>
       <van-grid :border="false">
-        <van-grid-item v-for="o in optList" :key="o.typeId">
+        <van-grid-item v-for="o in optList" :key="o.typeId" 
+          :to="{ 
+            path: '/news',
+            query: { 
+              navTitle: o.typeName, 
+              id: o.typeId 
+            }
+          }"
+        >
           <p class="item">
             <!-- <van-icon name="clear" /> -->
             {{ o.typeName }}
@@ -31,7 +39,15 @@
         <van-col span="13" class="action"></van-col>
       </van-row>
       <van-grid :border="false">
-        <van-grid-item v-for="c in cutList" :key="c.typeId">
+        <van-grid-item v-for="c in cutList" :key="c.typeId" 
+          :to="{ 
+            path: '/news',
+            query: { 
+              navTitle: c.typeName, 
+              id: c.typeId 
+            }
+          }"
+        >
           <p class="item">{{ c.typeName }}</p>
         </van-grid-item>
       </van-grid>
@@ -50,7 +66,7 @@ import { navsAllData, getStoreNavs } from "../../types/navs"
 const app = useAppStore()
 const { navShow } = toRefs(app)
 const router = useRouter()
-const onClickRight = () => app[ACTION.CHANGE_ANV_SHOW](false)
+const onClickRight = () => app[ACTION.CHANGE_NAV_SHOW](false)
 
 // 渲染导航列表
 const data = reactive(new navsAllData())
@@ -63,7 +79,7 @@ onMounted(() => {
 // 监听路由控制导航开关
 watch(() => router.currentRoute.value.path, () => {
   if (!app.navShow) return
-  app[ACTION.CHANGE_ANV_SHOW](false)
+  app[ACTION.CHANGE_NAV_SHOW](false)
 })
 </script>
 

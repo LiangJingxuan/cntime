@@ -10,5 +10,6 @@ export default defineConfig({
     Components({
       resolvers: [VantResolver()]
     })
-  ]
+  ],
+  base: process.env.NODE_ENV === 'production' ? './' : '/',
 })

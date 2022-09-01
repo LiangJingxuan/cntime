@@ -1,16 +1,18 @@
 <template>
-  <van-row gutter="10" v-for="l in list" :key="l.newsId">
-    <van-col :span="span(l.imgList)">
-      <p class="digest">{{  l.title  }}</p>
-    </van-col>
-    <van-col span="8" v-show="l.imgList">
-      <img :src="l.imgList && l.imgList[0]" v-lazy="l.imgList && l.imgList[0]">
-    </van-col>
-    <van-col span="24" class="source">
-      <span>{{  l.source  }}</span>
-      <span>{{  l.postTime  }}</span>
-    </van-col>
-  </van-row>
+  <router-link :to="{path: '/news-details', query: {newsId: l.newsId}}" v-for="l in list" :key="l.newsId">
+    <van-row gutter="10">
+      <van-col :span="span(l.imgList)">
+        <p class="digest">{{  l.title  }}</p>
+      </van-col>
+      <van-col span="8" v-show="l.imgList">
+        <img :src="l.imgList && l.imgList[0]" v-lazy="l.imgList && l.imgList[0]">
+      </van-col>
+      <van-col span="24" class="source">
+        <span>{{  l.source  }}</span>
+        <span>{{  l.postTime  }}</span>
+      </van-col>
+    </van-row>
+  </router-link>
 </template>
 
 <script setup lang="ts">

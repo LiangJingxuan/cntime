@@ -1,7 +1,19 @@
 <template>
   <div class="navs">
     <van-grid :column-num="6" :border="false">
-      <van-grid-item v-for="l in list" :key="l.typeId" :text="l.typeName" class="gitem" />
+      <van-grid-item 
+        class="gitem"
+        v-for="l in list" 
+        :key="l.typeId" 
+        :text="l.typeName" 
+        :to="{ 
+          path: '/news',
+          query: { 
+            navTitle: l.typeName, 
+            id: l.typeId 
+          }
+        }"
+      />
       <van-grid-item key="更多" text="更多" class="gitem" @click="changeNavShow" />
     </van-grid>
   </div>
@@ -18,7 +30,7 @@ const data = reactive(new navsData())
 const { list } = toRefs(data)
 // 设置导航页显示状态
 const app = useAppStore()
-const changeNavShow = () => app[ACTION.CHANGE_ANV_SHOW](true)
+const changeNavShow = () => app[ACTION.CHANGE_NAV_SHOW](true)
 
 onMounted(() => {
   // 获取选中导航列表
