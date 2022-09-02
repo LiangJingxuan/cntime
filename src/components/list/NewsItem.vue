@@ -1,5 +1,6 @@
 <template>
-  <router-link :to="{ path: '/news-details', query: { newsId: l.newsId } }" v-for="l in list" :key="l.newsId">
+  <router-link :to="{ path: '/news-details', query: { navTitle: navTitle, newsId: l.newsId } }" v-for="l in list"
+    :key="l.newsId">
     <van-row gutter="10">
       <van-col :span="span(l.imgList, l.full)">
         <p class="digest">{{  l.title  }}</p>
@@ -18,9 +19,15 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import { useRoute } from "vue-router"
 import { newsInt } from "../../types/news"
 
+// header标题
+const route = useRoute()
+const navTitle = computed(() => route.query.navTitle || "")
+// 宽度
 const span = computed(() => (list: Object, full: boolean) => list && !full ? 16 : 24)
+// 数据
 defineProps({
   list: Array<newsInt>
 })

@@ -5,10 +5,10 @@
         <router-link to="/">
           <img src="../../assets/img/logo.png">
         </router-link>
-        <span>{{  title  }}</span>
+        <span @click="router.go(-1)">{{  title  }}</span>
       </template>
       <template #right>
-        <van-icon name="wap-nav" />
+        <!-- <van-icon name="wap-nav" /> -->
       </template>
     </van-nav-bar>
   </van-sticky>
@@ -54,13 +54,6 @@ const title = computed(() => {
   return t ? t + " · 频道" : "资讯网"
 })
 
-// keeplive
-const keep = computed(() => {
-  console.log();
-
-  return route.meta.keepAlive
-})
-
 // 更新页面
 const isRouterActive = ref(true)
 provide("reload", () => {
@@ -72,6 +65,10 @@ provide("reload", () => {
 </script>
 
 <style scoped lang="less">
+:deep(.van-haptics-feedback:active) {
+  opacity: 1;
+}
+
 .header {
   // background: linear-gradient(176deg, rgba(76, 126, 255, 1) 0%, rgba(100, 174, 252, 1) 100%);
   background-color: #528bfe;
