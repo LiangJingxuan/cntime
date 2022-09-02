@@ -16,6 +16,7 @@ export interface newsInt {
   newsId: string
   postTime: string
   imgList: string
+  full: boolean
 }
 export interface newsDetailsInt {
   content: string
@@ -31,6 +32,11 @@ export class newsData {
 export const getNewsList = async (data: newsData, payload: newsPay, callback: Function, catchError: Function) => {
   try {
     const res = await news[newsEnum.GET_NEWS_LIST](payload)
+    const _list = res.data
+    for (let i = 0, len = _list.length; i < len; i++) {
+      const random = Math.floor(Math.random() * 10 + 1)
+      _list[i].full = random > 8
+    }
     data.list = data.list.concat(res.data)
   } catch (error) {
     catchError()

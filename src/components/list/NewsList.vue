@@ -8,13 +8,12 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, toRefs, ref } from "vue"
+import { reactive, toRefs, ref, onActivated, inject } from "vue"
 import { useRoute } from "vue-router"
 import { newsData, getNewsList } from "../../types/news"
 
 const data = reactive(new newsData())
 const { list } = toRefs(data)
-
 
 // 分页
 const loading = ref(false)
@@ -34,6 +33,13 @@ const onLoad = () => {
     page--
   })
 }
+
+// 缓存数据更新设置
+const load: any = inject("reload")
+onActivated(() => {
+  if (page === 1) return
+  if (!route.meta.isBack) load()
+})
 </script>
 
 <style scoped lang="less">

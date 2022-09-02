@@ -18,10 +18,20 @@
       <van-tab :title="(r.meta.title as string)" v-for="r in routes" :key="r.path" />
     </van-tabs>
   </div>
+  <!-- <keep-alive>
+    <router-view v-if="route.meta.keepAlive" />
+  </keep-alive> -->
+  <!-- v-if="isRouterActive" -->
+  <router-view v-slot="{ Component }" v-if="isRouterActive">
+    <keep-alive>
+      <component :key="route.name" :is="Component" v-if="route.meta.keepAlive"></component>
+    </keep-alive>
+    <component :key="route.name" :is="Component" v-if="!route.meta.keepAlive"></component>
+  </router-view>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue"
+import { computed, provide, nextTick, ref } from "vue"
 import { useRouter, useRoute } from "vue-router"
 import { path } from "../../router/enum"
 import { useAppStore } from "../../store"
@@ -42,6 +52,22 @@ const route = useRoute()
 const title = computed(() => {
   const t = route.query.navTitle
   return t ? t + " · 频道" : "资讯网"
+})
+
+// keeplive
+const keep = computed(() => {
+  console.log();
+
+  return route.meta.keepAlive
+})
+
+// 更新页面
+const isRouterActive = ref(true)
+provide("reload", () => {
+  isRouterActive.value = false
+  nextTick(() => {
+    isRouterActive.value = true
+  })
 })
 </script>
 

@@ -12,6 +12,8 @@ const routes: RouteRecordRaw[] = [
       title: "新闻",
       i: true,
       enum: 0,
+      keepAlive: true,
+      isBack: false,
     },
     children: []
   },
@@ -46,6 +48,10 @@ const routes: RouteRecordRaw[] = [
     name: "news",
     // component: import("../views/news/index.vue"),
     component: modules["../views/news/index.vue"],
+    meta: {
+      keepAlive: true,
+      isBack: false,
+    }
   },
   // 详情
   {
